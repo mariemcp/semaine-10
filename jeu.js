@@ -1,45 +1,47 @@
 var bouton = document.getElementById("bouton");
 var multiplicateur = document.getElementById("multiplicateur");
 var score = document.getElementById("score");
-var boutonAutoclick = document.getElementById("boutonAutoclick");
-
+var boutonAutoclick = document.getElementById("autoclic");
+var prix=80;
 score = 0;
 var nbMultiplicateur = 1;
+var scoreE=0;
 
 function afficherScore() {
-    score.innerHTML = "Score : " + score;
+    score.innerHTML = "Score : " + scoreE;
 }
 
 function afficherNbMultiplicateur() {
-    multiplicateur.innerHTML = "Multiplicateur x" + nbMultiplicateur + " (prix du prochain : " + prix() + ")";
+    multiplicateur.innerHTML = "Multiplicateur x" + nbMultiplicateur + " (prix du prochain : " + prix + ")";
 }
 
 function clic() {
-    score = score + nbMultiplicateur;
+    scoreE = scoreE + nbMultiplicateur;
     afficherScore();
 }
 
-function prix() {
-    return 20 * nbMultiplicateur * nbMultiplicateur;
-}
+
 
 function acheterMultiplicateur() {
-    if (score >= prix()) {
-        score = score - prix();
+    if (scoreE >= prix) {
+        scoreE = scoreE - prix;
         nbMultiplicateur = nbMultiplicateur + 1;
         afficherNbMultiplicateur();
         afficherScore();
     } else {
         alert("Votre score est insuffisant !");
     }
+    prix=80*nbMultiplicateur;
 }
+
 function autoClic(){
-    if (score >=1000) {
+    if (scoreE >=1000) {
 	setInterval(clic, 1000);
 	}
 	else {
 	alert("Votre score est insuffisant !");
 	}
+	afficherScore();
 }
 
 
@@ -47,8 +49,8 @@ function autoClic(){
 
 
 bouton.onclick = clic;
-
+boutonAutoclick.onclick = autoClic;
 multiplicateur.onclick = acheterMultiplicateur;
-afficherScore();
+
 afficherNbMultiplicateur();
 
