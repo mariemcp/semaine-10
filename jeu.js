@@ -35,7 +35,7 @@ function acheterMultiplicateur() {
 
 function achatautoclic(){ 
 	if (score >=10 ) { score = score - 10 ; setInterval(clic, 500) ; afficherScore();}
-	else { alert (" pas possible") ; } }	
+	else { alert (" Encore un effort !") ; } }	
 
 
 	
