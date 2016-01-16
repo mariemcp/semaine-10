@@ -1,30 +1,27 @@
 var bouton = document.getElementById("bouton");
 var multiplicateur = document.getElementById("multiplicateur");
-var score = document.getElementById("score");
-var boutonAutoclick = document.getElementById("autoclic");
+var scoreE = document.getElementById("scoreE");
+var autoclic = document.getElementById("autoclic");
 var prix=80;
-score = 0;
+var score = 0;
 var nbMultiplicateur = 1;
-var scoreE=0;
 
 function afficherScore() {
-    score.innerHTML = "Score : " + scoreE;
+    scoreE.innerHTML = "Score : " + score;
 }
 
 function afficherNbMultiplicateur() {
-    multiplicateur.innerHTML = "Multiplicateur x" + nbMultiplicateur + " (prix du prochain : " + prix + ")";
+    multiplicateur.innerHTML = "Multiplicateur x" + nbMultiplicateur + " ( prix du prochain : " + prix + ")";
 }
 
 function clic() {
-    scoreE = scoreE + nbMultiplicateur;
+    score = score + nbMultiplicateur;
     afficherScore();
 }
 
-
-
 function acheterMultiplicateur() {
-    if (scoreE >= prix) {
-        scoreE = scoreE - prix;
+    if (score >= prix) {
+        score = score - prix;
         nbMultiplicateur = nbMultiplicateur + 1;
         afficherNbMultiplicateur();
         afficherScore();
@@ -34,23 +31,17 @@ function acheterMultiplicateur() {
     prix=80*nbMultiplicateur;
 }
 
-function autoClic(){
-    if (scoreE >=1000) {
-	setInterval(clic, 1000);
-	}
-	else {
-	alert("Votre score est insuffisant !");
-	}
-	afficherScore();
-}
 
 
+function achatautoclic(){ 
+	if (score >=10 ) { score = score - 10 ; setInterval(clic, 500) ; afficherScore();}
+	else { alert (" pas possible") ; } }	
 
 
-
+	
+	
 bouton.onclick = clic;
-boutonAutoclick.onclick = autoClic;
-multiplicateur.onclick = acheterMultiplicateur;
+autoclic.onclick = achatautoclic;
+multiplicateur.onclick = acheterMultiplicateur ;
 
 afficherNbMultiplicateur();
-
